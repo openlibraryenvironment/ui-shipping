@@ -1,0 +1,34 @@
+{
+  "name": "@folio/shipping",
+  "version": "1.0.0",
+  "description": "Ship loaned items to borrowing library",
+  "license": "Apache-2.0",
+  "stripes": {
+    "actsAs": ["app"],
+    "displayName": "ui-shipping.meta.title",
+    "route": "/shipping",
+    "queryResource": "query",
+    "icons": [
+      {
+        "name": "app",
+        "alt": "Ship loaned items to borrowing library",
+        "title": "Shipping"
+      }
+    ],
+    "permissionSets": [
+      {
+        "permissionName": "module.shipping.enabled",
+        "displayName": "UI: shipping module is enabled",
+        "visible": true
+      },
+      {
+        "permissionName": "settings.shipping.enabled",
+        "displayName": "Settings (shipping): display list of settings pages",
+        "subPermissions": [
+          "settings.enabled"
+        ],
+        "visible": true
+      }
+    ]
+  }
+}
