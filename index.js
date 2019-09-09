@@ -1,4 +1,5 @@
 import React from 'react';
+import ResourceSharing from '@folio/rs';
 
 export default (props) => (
   <span>
