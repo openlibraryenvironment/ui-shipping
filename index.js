@@ -4,6 +4,7 @@ import ResourceSharing from '@folio/rs';
 import { SearchAndSort } from '@folio/stripes/smart-components';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import AppNameContext from './AppNameContext';
+import css from './index.css';
 
 import {
   Button,
@@ -40,19 +41,12 @@ class Shipping extends React.Component {
 
     const appName = path.substring(1).replace(/\/.*/, '');
 
+    if (actAs === 'settings') {
+      return <Settings {...this.props} appName={appName} />;
+    }
+      return (
 
-    return (
       <React.Fragment>
-        <PaneMenu>
-          <Button
-            type="submit"
-            disabled={this.props.pristine || this.props.submitting}
-            onClick={this.props.handleSubmit}
-            buttonStyle="primary paneHeaderNewButton"
-            marginBottom0
-          >
-          </Button>
-        </PaneMenu>
 
       <AppNameContext.Provider value={appName}>
           <Switch>
@@ -67,7 +61,21 @@ class Shipping extends React.Component {
             />
           </Switch>
         </AppNameContext.Provider>
+
+
+
+        <PaneMenu>
+          <Button
+            type="submit"
+            disabled={this.props.pristine || this.props.submitting}
+            onClick={this.props.handleSubmit}
+            buttonStyle="primary paneHeaderNewButton"
+            marginBottom0
+          >
+          </Button>
+        </PaneMenu>
       </React.Fragment>
+
     );
 
   }
