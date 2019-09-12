@@ -1,3 +1,11 @@
 {
-  "meta.title": "Shipping"
+  "meta.title": "Shipping",
+  "prop.shippingLibrary":"Shipping Library",
+  "prop.receivingLibrary":"Receiving Library",
+  "prop.id":"Shipment ID",
+  "prop.shipmentMethod":"Method",
+  "prop.trackingNumber":"Tracking Number",
+  "prop.status":"Status",
+  "prop.shipDate":"Ship Date",
+  "prop.receivedDate":"Received Date"
 }

@@ -33,15 +33,21 @@ import { IntlConsumer } from '@folio/stripes/core';
 
 export default class Shipments extends React.Component {
   static propTypes = {
-    data: PropTypes.object,
+    shippingData: PropTypes.object,
     searchString: PropTypes.string,
     source: PropTypes.shape({
       loaded: PropTypes.func,
       totalCount: PropTypes.func,
     }),
+    queryGetter: PropTypes.func,
+    querySetter: PropTypes.func,
     visibleColumns: PropTypes.arrayOf(PropTypes.string),
   }
-
+  static defaultProps = {
+    shippingData: {},
+    searchString: '',
+    visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'],
+  }
 
 
 
@@ -52,13 +58,23 @@ export default class Shipments extends React.Component {
     }
   }
 
+  columnMapping = {
+    shippingLibrary: <FormattedMessage id="ui-shipping.prop.shippingLibrary" />,
+    receivingLibrary: <FormattedMessage id="ui-shipping.prop.receivingLibrary" />,
+    id: <FormattedMessage id="ui-shipping.prop.id" />,
+    shipmentMethod: <FormattedMessage id="ui-shipping.prop.shipmentMethod" />,
+    trackingNumber: <FormattedMessage id="ui-shipping.prop.trackingNumber" />,
+    status: <FormattedMessage id="ui-shipping.prop.status" />,
+    shipDate: <FormattedMessage id="ui-shipping.prop.shipDate" />,
+    receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" />
+  }
+
  
 
   toggleFilterPane = () => {
-    /* this.setState(curState => ({
+    this.setState(curState => ({
       filterPaneIsVisible: !curState.filterPaneIsVisible,
-    })); */
-    console.log("I'm being called")
+    }));
   }
 
 
@@ -99,17 +115,40 @@ export default class Shipments extends React.Component {
 
 
 
+  renderIsEmptyMessage = (query, source) => {
+    if (!source) {
+      return 'no source yet';
+    }
+
+    return (
+      <div data-test-licenses-no-results-message>
+        <NoResultsMessage
+          source={source}
+          searchTerm={query.query || ''}
+          filterPaneIsVisible
+          toggleFilterPane={noop}
+        />
+      </div>
+    );
+  }
+
+
+
+
+
+
   render () {
     const {
+      shippingData,
       queryGetter,
       querySetter,
       source,
       visibleColumns,
     } = this.props;
-/* 
+ 
     const query = queryGetter() || {};
     const count = source ? source.totalCount() : 0;
-    const sortOrder = query.sort || ''; */
+    const sortOrder = query.sort || ''; 
 
     return (
       <SearchAndSortQuery
@@ -185,26 +224,24 @@ export default class Shipments extends React.Component {
                 <Pane
                     appIcon={<AppIcon app="shipping" />}
                     defaultWidth="fill"
-                    paneTitle={<FormattedMessage id="ui-shipments.shipments" />}
+                    firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                    padContent={false}
+                    paneTitle={<FormattedMessage id="ui-shipping.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}
                   >
                     <MultiColumnList
-                      /* autosize
+                      autosize
                       columnMapping={this.columnMapping}
                       columnWidths={this.columnWidths}
-                      contentData={data.shipments}
+                      contentData={shippingData.shipments}
                       formatter={this.formatter}
                       id="list-shipmentd"
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
-                      onHeaderClick={onSort}
-                      onNeedMoreData={onNeedMoreData}
-                      onRowClick={onSelectRow}
-                      rowFormatter={this.rowFormatter}
-                      sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'} */
-                      //sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
-                      /* totalCount={count}
+                      sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
+                      sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
+                      totalCount={count}
                       virtualize
-                      visibleColumns={visibleColumns} */
+                      visibleColumns={visibleColumns}
                     />
                   </Pane>
               </Paneset>

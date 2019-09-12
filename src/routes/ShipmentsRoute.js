@@ -18,7 +18,7 @@ class ShipmentsRoute extends React.Component {
       recordsRequired: '%{resultCount}',
       perRequest: RESULT_COUNT_INCREMENT,
       limitParam: 'perPage',
-      path: '/rs/shipments',
+      path: 'rs/shipments',
       params: getSASParams({
         searchKey: 'id',
         columnMap: {
@@ -41,6 +41,35 @@ class ShipmentsRoute extends React.Component {
   });
 
 
+  constructor(props) {
+    super(props);
+
+    this.logger = props.stripes.logger;
+    this.searchField = React.createRef();
+  }
+
+
+
+  
+  componentDidMount() {
+    this.source = new StripesConnectedSource(this.props, this.logger, 'licenses');
+
+    if (this.searchField.current) {
+      this.searchField.current.focus();
+    }
+  }
+
+
+  querySetter = ({ nsValues }) => {
+    this.props.mutator.query.update(nsValues);
+  }
+
+  queryGetter = () => {
+    return get(this.props.resources, 'query', {});
+  }
+
+
+
 
   render () {
     const { children, location, resources } = this.props;
@@ -52,6 +81,9 @@ class ShipmentsRoute extends React.Component {
       shippingData={{
         shipments: get(resources, 'shipments.records', []),
       }}
+      queryGetter={this.queryGetter}
+      querySetter={this.querySetter}
+      source={this.source}
     />);
   }
 }
