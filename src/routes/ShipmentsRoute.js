@@ -36,6 +36,11 @@ class ShipmentsRoute extends React.Component {
         },
       })
     },
+    shipmentMethodValues: {
+      type: 'okapi',
+      path: 'shipments/refdata/Shipment/shippingMethod',
+      shouldRefresh: () => false,
+    },
     query: { initialValue: {} },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
   });
@@ -84,6 +89,7 @@ class ShipmentsRoute extends React.Component {
     return (<Shipments
       shippingData={{
         shipments: get(resources, 'shipments.records', []),
+        shipmentMethodValues: get(resources, 'shipmentMethodValues.records', []),
       }}
       onNeedMoreData={this.handleNeedMoreData}
       queryGetter={this.queryGetter}

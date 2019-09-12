@@ -133,6 +133,15 @@ export default class Shipments extends React.Component {
 
 
 
+onSelectRow() {
+  return (
+    <Pane
+        appIcon={<AppIcon app="licenses" />}
+        defaultWidth="45%"
+        dismissible />
+  )
+}
+
 
 
 
@@ -240,7 +249,7 @@ export default class Shipments extends React.Component {
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}
-                      //onRowClick={onSelectRow}
+                      onRowClick={onSelectRow}
                       //rowFormatter={this.rowFormatter}
                       sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
