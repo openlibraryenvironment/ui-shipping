@@ -68,7 +68,11 @@ class ShipmentsRoute extends React.Component {
     return get(this.props.resources, 'query', {});
   }
 
-
+  handleNeedMoreData = () => {
+    if (this.source) {
+      this.source.fetchMore(RESULT_COUNT_INCREMENT);
+    }
+  }
 
 
   render () {
@@ -81,6 +85,7 @@ class ShipmentsRoute extends React.Component {
       shippingData={{
         shipments: get(resources, 'shipments.records', []),
       }}
+      onNeedMoreData={this.handleNeedMoreData}
       queryGetter={this.queryGetter}
       querySetter={this.querySetter}
       source={this.source}

@@ -52,7 +52,8 @@ class Shipping extends React.Component {
                   from={path}
                   to={`${path}/shipments`}
                 />
-                <Route path={`${path}/shipments`} component={ShipmentsRoute} />
+                <Route path={`${path}/shipments`} component={ShipmentsRoute}>
+                </Route>
               </Switch>
             </div>
           </div>

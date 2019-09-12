@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { get, noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 
-
 import {
   SearchAndSortQuery,
   SearchAndSortNoResultsMessage as NoResultsMessage,
@@ -39,6 +38,8 @@ export default class Shipments extends React.Component {
       loaded: PropTypes.func,
       totalCount: PropTypes.func,
     }),
+    onNeedMoreData: PropTypes.func,
+    onSelectRow: PropTypes.func,
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
     visibleColumns: PropTypes.arrayOf(PropTypes.string),
@@ -68,8 +69,6 @@ export default class Shipments extends React.Component {
     shipDate: <FormattedMessage id="ui-shipping.prop.shipDate" />,
     receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" />
   }
-
- 
 
   toggleFilterPane = () => {
     this.setState(curState => ({
@@ -140,6 +139,8 @@ export default class Shipments extends React.Component {
   render () {
     const {
       shippingData,
+      onNeedMoreData,
+      onSelectRow,
       queryGetter,
       querySetter,
       source,
@@ -235,8 +236,12 @@ export default class Shipments extends React.Component {
                       columnWidths={this.columnWidths}
                       contentData={shippingData.shipments}
                       formatter={this.formatter}
-                      id="list-shipmentd"
+                      id="list-shipments"
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
+                      onHeaderClick={onSort}
+                      onNeedMoreData={onNeedMoreData}
+                      //onRowClick={onSelectRow}
+                      //rowFormatter={this.rowFormatter}
                       sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
                       totalCount={count}
