@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Shipments from './components/views/Shipments.js'
-
+import ShipmentsRoute from './routes/ShipmentsRoute';
 
 import { Redirect, Route, Switch } from 'react-router-dom';
 import AppNameContext from '../AppNameContext';
@@ -53,7 +52,7 @@ class Shipping extends React.Component {
                   from={path}
                   to={`${path}/shipments`}
                 />
-                <Route path={`${path}/shipments`} component={Shipments} />
+                <Route path={`${path}/shipments`} component={ShipmentsRoute} />
               </Switch>
             </div>
           </div>
@@ -64,6 +63,4 @@ class Shipping extends React.Component {
 }
 
 export default Shipping;
-export {default as Shipments } from './components/views/Shipments'
-
-//export default (props) => <ResourceSharing {...props} />;
+export {default as Shipments } from './components/Shipments';
