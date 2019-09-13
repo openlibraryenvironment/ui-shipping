@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ShipmentsRoute from './routes/ShipmentsRoute';
 
 import { Redirect, Route, Switch } from 'react-router-dom';
-import AppNameContext from '../AppNameContext';
 import css from './index.css';
 
 
@@ -37,13 +36,7 @@ class Shipping extends React.Component {
       }
     } = this.props;
 
-    const appName = path.substring(1).replace(/\/.*/, '');
-
-    if (actAs === 'settings') {
-      return <Settings {...this.props} appName={appName} />;
-    }
       return (
-        <AppNameContext.Provider value={appName}>
           <div className={css.container}>
             <div className={css.body}>
               <Switch>
@@ -57,7 +50,6 @@ class Shipping extends React.Component {
               </Switch>
             </div>
           </div>
-        </AppNameContext.Provider>
     );
 
   }
