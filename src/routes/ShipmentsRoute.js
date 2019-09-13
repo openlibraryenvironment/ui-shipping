@@ -57,7 +57,7 @@ class ShipmentsRoute extends React.Component {
 
   
   componentDidMount() {
-    this.source = new StripesConnectedSource(this.props, this.logger, 'licenses');
+    this.source = new StripesConnectedSource(this.props, this.logger, 'shipments');
 
     if (this.searchField.current) {
       this.searchField.current.focus();

@@ -30,7 +30,7 @@ import { AppIcon, IfPermission } from '@folio/stripes/core';
 
 import { IntlConsumer } from '@folio/stripes/core';
 
-export default class Shipments extends React.Component {
+class Shipments extends React.Component {
   static propTypes = {
     shippingData: PropTypes.object,
     searchString: PropTypes.string,
@@ -266,3 +266,5 @@ onSelectRow() {
     );
   }
 }
+
+export default Shipments
