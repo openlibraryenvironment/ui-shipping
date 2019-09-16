@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShipmentsRoute from './routes/ShipmentsRoute';
-
+import ViewShipments from './routes/ViewShipments';
+import ViewShipment from './routes/ViewShipments';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 
@@ -31,7 +31,10 @@ class Shipping extends React.Component {
 
       return (
         <Switch>
-          <Route path={`${path}`} component={ShipmentsRoute}>
+          <Route path={`${path}`} component={ViewShipments}>
+            <Switch>
+              <Route path={`${path}/:id`} exact component={ViewShipment} />
+            </Switch>
           </Route>
         </Switch>
     );
@@ -41,3 +44,4 @@ class Shipping extends React.Component {
 
 export default Shipping;
 export {default as Shipments } from './components/Shipments';
+export {default as Shipment } from './components/IndividualShipment/IndividualShipment';

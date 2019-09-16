@@ -19,14 +19,15 @@ import { Spinner } from '@folio/stripes-erm-components';
 
 import {
   ShipmentInfo,
-} from './sections';
+} from './sections/ShipmentInfo';
 
 class IndividualShipment extends React.Component {
   
   render() {
-   
+   console.log("This is actually doing things")
     return (
-      <Pane>
+      <Pane
+      defaultWidth = "45%">
         <p>Hello World</p>
       </Pane>
     );

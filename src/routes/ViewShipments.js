@@ -10,7 +10,7 @@ import { getSASParams } from '@folio/stripes-erm-components';
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
-class ShipmentsRoute extends React.Component {
+class ViewShipments extends React.Component {
   static manifest = Object.freeze({
     shipments: {
       type: 'okapi',
@@ -81,7 +81,7 @@ class ShipmentsRoute extends React.Component {
 
 
   render () {
-    const { children, location, resources } = this.props;
+    const {children, resources } = this.props;
 
     if (this.source) {
       this.source.update(this.props, 'shipments');
@@ -95,8 +95,11 @@ class ShipmentsRoute extends React.Component {
       queryGetter={this.queryGetter}
       querySetter={this.querySetter}
       source={this.source}
-    />);
+    >
+      { children }
+    </Shipments>
+    );
   }
 }
 
-export default stripesConnect(ShipmentsRoute);
+export default stripesConnect(ViewShipments);

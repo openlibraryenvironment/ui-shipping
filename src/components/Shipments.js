@@ -1,5 +1,6 @@
 import React from 'react';
 import css from './Shipments.css';
+import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 
 import { get, noop } from 'lodash';
@@ -28,7 +29,6 @@ import {
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 
-import { IntlConsumer } from '@folio/stripes/core';
 
 class Shipments extends React.Component {
   static propTypes = {
@@ -50,6 +50,7 @@ class Shipments extends React.Component {
     visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'],
   }
 
+  
 
 
   constructor(props) {
@@ -102,6 +103,8 @@ class Shipments extends React.Component {
       </PaneMenu>
     );
   }
+
+  
   renderResultsPaneSubtitle = (source) => {
     if (source && source.loaded()) {
       const count = source.totalCount();
@@ -132,24 +135,24 @@ class Shipments extends React.Component {
   }
 
 
+  rowURL = (id) => {
+    return `/shipping/${id}${this.props.searchString}`;
+  }
 
-onSelectRow() {
-  return (
-    <Pane
-        appIcon={<AppIcon app="licenses" />}
-        defaultWidth="45%"
-        dismissible />
-  )
+onSelectRow = () => {
+  <Pane
+    defaultWidth = "45%"
+  >
+    <p>Hello World</p>
+  </Pane>
 }
-
-
 
 
   render () {
     const {
+      children,
       shippingData,
       onNeedMoreData,
-      onSelectRow,
       queryGetter,
       querySetter,
       source,
@@ -249,8 +252,8 @@ onSelectRow() {
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}
-                      onRowClick={onSelectRow}
-                      //rowFormatter={this.rowFormatter}
+                      onRowClick={this.onSelectRow}
+                      rowFormatter={this.rowFormatter}
                       sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
                       totalCount={count}
@@ -258,6 +261,9 @@ onSelectRow() {
                       visibleColumns={visibleColumns}
                     />
                   </Pane>
+
+                  { children }
+
               </Paneset>
             );
           }
