@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 import { get, noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
+import FormattedUTCDate from './FormattedUTCDate';
+
 
 import {
   SearchAndSortQuery,
@@ -48,8 +50,8 @@ class Shipments extends React.Component {
   static defaultProps = {
     shippingData: {},
     searchString: '',
-    /* visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'], */
-    visibleColumns: ['trackingNumber'],
+    visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'], 
+    //visibleColumns: ['trackingNumber'],
   }
 
   
@@ -64,18 +66,19 @@ class Shipments extends React.Component {
 
 
   columnMapping = {
-/*     shippingLibrary: <FormattedMessage id="ui-shipping.prop.shippingLibrary" />,
+    shippingLibrary: <FormattedMessage id="ui-shipping.prop.shippingLibrary" />,
     receivingLibrary: <FormattedMessage id="ui-shipping.prop.receivingLibrary" />,
     id: <FormattedMessage id="ui-shipping.prop.id" />,
-    shipmentMethod: <FormattedMessage id="ui-shipping.prop.shipmentMethod" />, */
+    shipmentMethod: <FormattedMessage id="ui-shipping.prop.shipmentMethod" />, 
     trackingNumber: <FormattedMessage id="ui-shipping.prop.trackingNumber" />,
-    /* status: <FormattedMessage id="ui-shipping.prop.status" />,
+    status: <FormattedMessage id="ui-shipping.prop.status" />,
     shipDate: <FormattedMessage id="ui-shipping.prop.shipDate" />,
-    receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" /> */
+    receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" /> 
   }
 
   formatter = {
-    trackingNumber: ({trackingNumber}) => trackingNumber && trackingNumber.label,
+    /* trackingNumber: ({trackingNumber}) => trackingNumber && trackingNumber.label,
+    shipDate: ({ shipDate }) => (shipDate ? <FormattedUTCDate value={shipDate} /> : ''), */
   }
 
   rowFormatter = (row) => {
@@ -95,7 +98,7 @@ class Shipments extends React.Component {
         className={rowClass}
         data-label={[
           rowData.name,
-          this.formatter.trackingNumber(rowData),
+          //this.formatter.trackingNumber(rowData),
         ].join('...')}
         key={`row-${rowIndex}`}
         role="row"

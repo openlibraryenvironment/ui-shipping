@@ -12,13 +12,28 @@ class ViewShipment extends React.Component {
 
   constructor(props) {
     super(props);
+/*     this.state = {
+      showPane: true,
+    } */
+  }
+
+
+
+  handleClose = () => {
+    /* this.setState({showPane: false}); */
+    this.props.history.push(`/shipping${this.props.location.search}`);
   }
 
   render() {
-    return(
-      <IndividualShipment/>
-
-    );
+    const {handlers} = this.props;
+      return(
+        <IndividualShipment
+          handlers={{
+            ...handlers,
+            onClose: this.handleClose,
+          }}
+        />
+      );
   }
 
 

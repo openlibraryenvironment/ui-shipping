@@ -24,12 +24,20 @@ class IndividualShipment extends React.Component {
     super(props);
   }
 
+
   render() {
-   console.log("This is actually doing things")
+    const {handlers} = this.props;
+
+    console.log("This is actually doing things")
     return (
+
+      //<h1> STUFF </h1>
       <Pane
-      defaultWidth = "45%">
-        <p>Hello World</p>
+      defaultWidth = "45%"
+      dismissable
+      onClose={handlers.onClose}
+      >
+        <p>Shipment information goes here.</p>
       </Pane>
     );
   }

@@ -31,8 +31,11 @@ class Shipping extends React.Component {
 
       return (
           <Switch>
-            <Route path={`${path}/:id`} exact component={ViewShipment} />
-            <Route path={`${path}`} component={ViewShipments}/>
+            <Route path={`${path}`} component={ViewShipments}>
+              <Switch>
+              <Route path={`${path}/:id`} exact component={ViewShipment} />
+              </Switch>
+            </Route>
           </Switch>
     );
 
