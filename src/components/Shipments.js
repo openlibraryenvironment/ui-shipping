@@ -28,6 +28,7 @@ import {
 } from '@folio/stripes/components';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
+import Redirect from 'react-router-dom/Switch';
 
 
 class Shipments extends React.Component {
@@ -47,7 +48,8 @@ class Shipments extends React.Component {
   static defaultProps = {
     shippingData: {},
     searchString: '',
-    visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'],
+    /* visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'], */
+    visibleColumns: ['trackingNumber'],
   }
 
   
@@ -60,16 +62,50 @@ class Shipments extends React.Component {
     }
   }
 
+
   columnMapping = {
-    shippingLibrary: <FormattedMessage id="ui-shipping.prop.shippingLibrary" />,
+/*     shippingLibrary: <FormattedMessage id="ui-shipping.prop.shippingLibrary" />,
     receivingLibrary: <FormattedMessage id="ui-shipping.prop.receivingLibrary" />,
     id: <FormattedMessage id="ui-shipping.prop.id" />,
-    shipmentMethod: <FormattedMessage id="ui-shipping.prop.shipmentMethod" />,
+    shipmentMethod: <FormattedMessage id="ui-shipping.prop.shipmentMethod" />, */
     trackingNumber: <FormattedMessage id="ui-shipping.prop.trackingNumber" />,
-    status: <FormattedMessage id="ui-shipping.prop.status" />,
+    /* status: <FormattedMessage id="ui-shipping.prop.status" />,
     shipDate: <FormattedMessage id="ui-shipping.prop.shipDate" />,
-    receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" />
+    receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" /> */
   }
+
+  formatter = {
+    trackingNumber: ({trackingNumber}) => trackingNumber && trackingNumber.label,
+  }
+
+  rowFormatter = (row) => {
+    const { rowClass, rowData, rowIndex, rowProps = {}, cells } = row;
+    let RowComponent;
+
+    if (this.props.onSelectRow) {
+      RowComponent = 'div';
+    } else {
+      RowComponent = Link;
+      rowProps.to = this.rowURL(rowData.id);
+    }
+
+    return (
+      <RowComponent
+        aria-rowindex={rowIndex + 2}
+        className={rowClass}
+        data-label={[
+          rowData.name,
+          this.formatter.trackingNumber(rowData),
+        ].join('...')}
+        key={`row-${rowIndex}`}
+        role="row"
+        {...rowProps}
+      >
+        {cells}
+      </RowComponent>
+    );
+  }
+
 
   toggleFilterPane = () => {
     this.setState(curState => ({
@@ -135,18 +171,20 @@ class Shipments extends React.Component {
   }
 
 
+
+
   rowURL = (id) => {
-    return `/shipping/${id}${this.props.searchString}`;
+    return `/shipping/${id}`;
   }
 
-onSelectRow = () => {
-  <Pane
-    defaultWidth = "45%"
-  >
-    <p>Hello World</p>
-  </Pane>
-}
 
+
+
+/*   onSelectRow = (elem) => {
+    console.log("Doing stuffs %o", elem);
+    this.props.history.push('/shipping/1')
+  }
+ */
 
   render () {
     const {
@@ -252,7 +290,7 @@ onSelectRow = () => {
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}
-                      onRowClick={this.onSelectRow}
+                      //onRowClick={onSelectRow}
                       rowFormatter={this.rowFormatter}
                       sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}

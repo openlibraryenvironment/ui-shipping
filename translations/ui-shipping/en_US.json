@@ -7,5 +7,6 @@
   "prop.trackingNumber":"Tracking Number",
   "prop.status":"Status",
   "prop.shipDate":"Ship Date",
-  "prop.receivedDate":"Received Date"
+  "prop.receivedDate":"Received Date",
+  "searchInputLabel": "Search shipments"
 }

@@ -1,7 +1,18 @@
 import React from 'react';
 import IndividualShipment from '../components/IndividualShipment/IndividualShipment';
-class ViewShipment extends React.component {
+import { stripesConnect } from '@folio/stripes/core';
+class ViewShipment extends React.Component {
+  static manifest = Object.freeze({
+    shipment: {
+      type: 'okapi',
+      path: 'rs/shipments/:{id}',
+    },
+    query: {},
+  });
 
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return(
@@ -12,4 +23,4 @@ class ViewShipment extends React.component {
 
 
 }
-export default ViewShipment
+export default stripesConnect(ViewShipment);

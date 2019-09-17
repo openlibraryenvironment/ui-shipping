@@ -95,6 +95,7 @@ class ViewShipments extends React.Component {
       queryGetter={this.queryGetter}
       querySetter={this.querySetter}
       source={this.source}
+      history= {this.props.history}
     >
       { children }
     </Shipments>

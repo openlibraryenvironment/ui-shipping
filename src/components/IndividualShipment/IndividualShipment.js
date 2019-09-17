@@ -15,14 +15,15 @@ import {
   Row,
 } from '@folio/stripes/components';
 import { AppIcon, IfPermission, TitleManager } from '@folio/stripes/core';
-import { Spinner } from '@folio/stripes-erm-components';
 
-import {
-  ShipmentInfo,
-} from './sections/ShipmentInfo';
+/* import ShipmentInfo from './sections/ShipmentInfo'; */
 
 class IndividualShipment extends React.Component {
   
+  constructor(props) {
+    super(props);
+  }
+
   render() {
    console.log("This is actually doing things")
     return (
