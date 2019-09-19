@@ -17,7 +17,6 @@ import { get } from 'lodash';
 class ShipmentInfo extends React.Component {
 
   render() {
-    console.log("[ShipmentInfo] ShipmentId: " + this.props.shipment.id)
     const {id, shipment} = this.props;
     return(
       <React.Fragment>

@@ -44,7 +44,6 @@ class ViewShipment extends React.Component {
 
   render() {
     const {handlers, resources} = this.props;
-    console.log("[View Shipment] Shipment is: " + get(resources, 'shipment.records[0]'))
       return(
         <IndividualShipment
           shipmentData={{
