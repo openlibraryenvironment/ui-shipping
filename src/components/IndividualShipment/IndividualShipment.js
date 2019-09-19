@@ -20,22 +20,45 @@ import { AppIcon, IfPermission, TitleManager } from '@folio/stripes/core';
 
 class IndividualShipment extends React.Component {
   
+
+  static propTypes = {
+    
+    handlers: PropTypes.shape({
+      onClose: PropTypes.func.isRequired,
+    }).isRequired,
+  };
+
   constructor(props) {
     super(props);
   }
 
 
+
+
+  getSectionProps = (id) => {
+    const { handlers, urls } = this.props;
+
+    return {
+      id,
+      handlers,
+      urls,
+    };
+  }
+
   render() {
-    const {handlers} = this.props;
+    const {shipmentData, handlers} = this.props;
 
     console.log("This is actually doing things")
     return (
 
-      //<h1> STUFF </h1>
       <Pane
+      appIcon={<AppIcon app="shipping" />}
       defaultWidth = "45%"
-      dismissable
+      dismissable = "last"
       onClose={handlers.onClose}
+      id="pane-view-shipment"
+      paneTitle={"Shipment · " + shipmentData.shipment.id}
+      paneSub={shipmentData.shipment.shippingLibrary + " 🠚 " + shipmentData.shipment.receivingLibrary}
       >
         <p>Shipment information goes here.</p>
       </Pane>
