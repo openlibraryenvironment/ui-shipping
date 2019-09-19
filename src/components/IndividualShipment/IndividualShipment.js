@@ -8,6 +8,7 @@ import {
   Button,
   Col,
   ExpandAllButton,
+  Headline,
   Icon,
   Layout,
   Pane,
@@ -16,7 +17,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon, IfPermission, TitleManager } from '@folio/stripes/core';
 
-/* import ShipmentInfo from './sections/ShipmentInfo'; */
+import ShipmentInfo from './sections/ShipmentInfo';
 
 class IndividualShipment extends React.Component {
   
@@ -36,19 +37,20 @@ class IndividualShipment extends React.Component {
 
 
   getSectionProps = (id) => {
-    const { handlers, urls } = this.props;
+    const { shipmentData, handlers, urls } = this.props;
 
     return {
       id,
       handlers,
       urls,
+      shipment: shipmentData.shipment,
     };
   }
 
   render() {
     const {shipmentData, handlers} = this.props;
 
-    console.log("This is actually doing things")
+    console.log("The shipment data is: " + shipmentData)
     return (
 
       <Pane
@@ -60,7 +62,9 @@ class IndividualShipment extends React.Component {
       paneTitle={"Shipment · " + shipmentData.shipment.id}
       paneSub={shipmentData.shipment.shippingLibrary + " 🠚 " + shipmentData.shipment.receivingLibrary}
       >
-        <p>Shipment information goes here.</p>
+        <TitleManager>
+          <ShipmentInfo {...this.getSectionProps('shipmentInfo')}/>
+        </TitleManager>
       </Pane>
     );
   }
