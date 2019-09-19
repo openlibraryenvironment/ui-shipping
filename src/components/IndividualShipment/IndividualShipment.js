@@ -50,7 +50,7 @@ class IndividualShipment extends React.Component {
   render() {
     const {shipmentData, handlers} = this.props;
 
-    console.log("The shipment data is: " + shipmentData)
+    console.log("[Individual Shipment] The shipment data is: " + shipmentData)
     return (
 
       <Pane

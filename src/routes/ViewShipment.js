@@ -35,18 +35,16 @@ class ViewShipment extends React.Component {
 
   constructor(props) {
     super(props);
-/*     this.state = {
-      showPane: true,
-    } */
+
   }
 
   handleClose = () => {
-    /* this.setState({showPane: false}); */
     this.props.history.push(`/shipping`);
   }
 
   render() {
     const {handlers, resources} = this.props;
+    console.log("[View Shipment] Shipment is: " + get(resources, 'shipment.records[0]'))
       return(
         <IndividualShipment
           shipmentData={{

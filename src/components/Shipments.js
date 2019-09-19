@@ -77,8 +77,8 @@ class Shipments extends React.Component {
   }
 
   formatter = {
-    /* trackingNumber: ({trackingNumber}) => trackingNumber && trackingNumber.label,
-    shipDate: ({ shipDate }) => (shipDate ? <FormattedUTCDate value={shipDate} /> : ''), */
+    shipDate: ({ shipDate }) => (shipDate ? <FormattedUTCDate value={shipDate} /> : ''),
+    receivedDate: ({ receivedDate }) => (receivedDate ? <FormattedUTCDate value={receivedDate} /> : ''),
   }
 
   rowFormatter = (row) => {
@@ -182,12 +182,6 @@ class Shipments extends React.Component {
 
 
 
-
-/*   onSelectRow = (elem) => {
-    console.log("Doing stuffs %o", elem);
-    this.props.history.push('/shipping/1')
-  }
- */
 
   render () {
     const {
