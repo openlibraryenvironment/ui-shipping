@@ -7,6 +7,7 @@ import {
 
 import {
   Row,
+  Card,
   Col,
   KeyValue,
   Accordion,
@@ -48,6 +49,30 @@ class ShipmentInfo extends React.Component {
           <Col xs={6}>
           <b>Received Date</b>
           <p>{shipment.receivedDate ? <FormattedUTCDate value={shipment.receivedDate} /> : 'Shipment Received Date Missing'}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={4}>
+            <b>Shipping library</b>
+            <Card
+              id="shipping-library-card"
+              headerClass="shipping-library-card-header"
+              headerStart={<span className="shipping-library-card-header"><b>{shipment.shippingLibrary ? shipment.shippingLibrary.name : 'Shipping Library Missing'}</b></span>}
+            >
+              
+              <div>Shipping Library Address</div>
+            </Card>
+          </Col>
+          <Col xs={2} />
+          <Col xs={4}>
+          <b>Receiving library</b>
+          <Card
+              id="receiving-library-card"
+              headerClass="receiving-library-card-header"
+              headerStart={<span className="receiving-library-card-header"><b>{shipment.receivingLibrary ? shipment.receivingLibrary.name : 'Receiving Library Missing'}</b></span>}
+            >
+              <div>Receiving Library Address</div>
+            </Card>
           </Col>
         </Row>
         
