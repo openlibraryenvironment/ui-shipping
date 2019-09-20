@@ -54,7 +54,9 @@ class ViewShipment extends React.Component {
           handlers={{
             ...handlers,
             onClose: this.handleClose,
+            text: "Some text"
           }}
+          isLoading={get(resources, 'shipment.isPending', true)}
         />
       );
   }

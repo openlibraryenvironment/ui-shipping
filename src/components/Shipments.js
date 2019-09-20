@@ -77,6 +77,8 @@ class Shipments extends React.Component {
   }
 
   formatter = {
+    shippingLibrary: ({shippingLibrary}) => (shippingLibrary ? shippingLibrary.name : ''),
+    receivingLibrary: ({receivingLibrary}) => (receivingLibrary ? receivingLibrary.name : ''),
     shipDate: ({ shipDate }) => (shipDate ? <FormattedUTCDate value={shipDate} /> : ''),
     receivedDate: ({ receivedDate }) => (receivedDate ? <FormattedUTCDate value={receivedDate} /> : ''),
   }
