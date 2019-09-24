@@ -8,5 +8,8 @@
   "prop.status":"Status",
   "prop.shipDate":"Ship Date",
   "prop.receivedDate":"Received Date",
-  "searchInputLabel": "Search shipments"
+  "searchInputLabel": "Search shipments",
+  "loading": "Loading...",
+  "createShipment": "Create Shipment",
+  "placeholder.trackingNumber": "XXXX-XXXX-XXXX"
 }

@@ -32,6 +32,9 @@ class IndividualShipment extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      showPane: true,
+    }
   }
 
 
@@ -51,7 +54,7 @@ class IndividualShipment extends React.Component {
   renderLoadingPane = () => {
     return (
       <Pane
-        defaultWidth="45%"
+        defaultWidth="fill%"
         dismissible
         id="pane-view-shipment"
         onClose={this.props.handlers.onClose}
@@ -64,9 +67,9 @@ class IndividualShipment extends React.Component {
     );
   }
 
-
-
-
+  handleClose() {
+    this.setState({showPane: false});
+  }
 
   render() {
     const {shipmentData, isLoading, handlers} = this.props;
@@ -80,13 +83,13 @@ class IndividualShipment extends React.Component {
     return (
       console.log(handlers.text),
       <Pane
-      appIcon={<AppIcon app="shipping" />}
-      defaultWidth = "fill"
-      dismissable
-      onClose={()=>window.alert('no :P')}
-      id="pane-view-shipment"
-      paneTitle={"Shipment · " + shipId}
-      paneSub={shippingLibName + " 🠚 " + recievingLibName}
+        appIcon={<AppIcon app="shipping" />}
+        defaultWidth = "fill"
+        dismissible
+        id="pane-view-shipment"
+        onClose={handlers.onClose}
+        paneTitle={"Shipment · " + shipId}
+        paneSub={shippingLibName + " 🠚 " + recievingLibName}
       >
         <TitleManager>
           <ShipmentInfo {...this.getSectionProps('shipmentInfo')}/>
@@ -95,5 +98,4 @@ class IndividualShipment extends React.Component {
     );
   }
 }
-
 export default IndividualShipment;

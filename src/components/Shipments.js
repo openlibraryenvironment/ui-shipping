@@ -46,6 +46,7 @@ class Shipments extends React.Component {
     queryGetter: PropTypes.func,
     querySetter: PropTypes.func,
     visibleColumns: PropTypes.arrayOf(PropTypes.string),
+    disableRecordCreation: PropTypes.bool,
   }
   static defaultProps = {
     shippingData: {},
@@ -145,6 +146,32 @@ class Shipments extends React.Component {
     );
   }
 
+  renderResultsLastMenu() {
+    if (this.props.disableRecordCreation) {
+      return null;
+    }
+
+    return (
+      <IfPermission perm="ui-shipping.shipment.edit">
+        <PaneMenu>
+          <FormattedMessage id="ui-shipping.createShipment">
+            {ariaLabel => (
+              <Button
+                aria-label={ariaLabel}
+                buttonStyle="primary"
+                id="clickable-new-shipment"
+                marginBottom0
+                to={`/shipping/create${this.props.searchString}`}
+              >
+                <FormattedMessage id="stripes-smart-components.new" />
+              </Button>
+            )}
+          </FormattedMessage>
+        </PaneMenu>
+      </IfPermission>
+    );
+  }
+
   
   renderResultsPaneSubtitle = (source) => {
     if (source && source.loaded()) {
@@ -181,6 +208,8 @@ class Shipments extends React.Component {
   rowURL = (id) => {
     return `/shipping/${id}`;
   }
+
+
 
 
 
@@ -275,6 +304,7 @@ class Shipments extends React.Component {
                     appIcon={<AppIcon app="shipping" />}
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                    lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle={<FormattedMessage id="ui-shipping.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}
