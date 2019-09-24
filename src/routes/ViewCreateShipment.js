@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import compose from 'compose-function';
 
 import { stripesConnect } from '@folio/stripes/core';
 
@@ -93,7 +92,4 @@ class ViewCreateShipment extends React.Component {
   }
 }
 
-export default compose(
-  withFileHandlers,
-  stripesConnect
-)(ViewCreateShipment);
+export default stripesConnect(ViewCreateShipment);
