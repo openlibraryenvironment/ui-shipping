@@ -191,7 +191,7 @@ class Shipments extends React.Component {
     }
 
     return (
-      <div data-test-licenses-no-results-message>
+      <div data-test-shipments-no-results-message>
         <NoResultsMessage
           source={source}
           searchTerm={query.query || ''}
