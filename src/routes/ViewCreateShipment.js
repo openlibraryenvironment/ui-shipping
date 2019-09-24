@@ -4,9 +4,7 @@ import { get } from 'lodash';
 
 import { stripesConnect } from '@folio/stripes/core';
 
-import withFileHandlers from './RouteComponents/withFileHandlers';
 import CreateShipmentForm from '../components/CreateShipmentForm/CreateShipmentForm';
-
 
 class ViewCreateShipment extends React.Component {
   static manifest = Object.freeze({
@@ -67,7 +65,7 @@ class ViewCreateShipment extends React.Component {
   handleSubmit = (shipment) => {
     const { history, location, mutator } = this.props;
 
-    mutator.shipment
+    mutator.shipments
       .POST(shipment)
       .then(({ id }) => {
         history.push(`/shipping/${id}${location.search}`);

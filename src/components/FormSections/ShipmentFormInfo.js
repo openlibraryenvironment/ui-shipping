@@ -46,8 +46,8 @@ export default class ShipmentFormInfo extends React.Component {
             </FormattedMessage>
           </Col>
         </Row>
-{/*         <Row>
-          <Col>
+        <Row>
+          <Col xs={6}>
           <Field
               id="edit-shipment-shippingLibrary"
               component={Select}
@@ -57,28 +57,14 @@ export default class ShipmentFormInfo extends React.Component {
               required
             />
           </Col>
-        </Row> */}
-        <Row>
-          <Col xs={12} md={5}>
-            <Field
-              backendDateStandard="YYYY-MM-DD"
-              id="edit-shipment-ship-date"
-              name="shipDate"
-              label={<FormattedMessage id="ui-shipping.prop.shipDate" />}
-              component={Datepicker}
-              dateFormat="YYYY-MM-DD"
-            />
-          </Col>
-          <Col xs={10} md={5}>
-            <Field
-              backendDateStandard="YYYY-MM-DD"
-              id="edit-shipment-received-date"
-              name="receivedDate"
-              label={<FormattedMessage id="ui-shipping.prop.receivedDate" />}
-              component={Datepicker}
-              dateFormat="YYYY-MM-DD"
-              validate={this.validateEndDate}
-              warn={this.warnEndDate}
+          <Col xs={6}>
+          <Field
+              id="edit-shipment-receivingLibrary"
+              component={Select}
+              dataOptions={data.libraryValues}
+              name="receivingLibrary"
+              label={<FormattedMessage id="ui-shipping.prop.receivingLibrary" />}
+              required
             />
           </Col>
         </Row>
