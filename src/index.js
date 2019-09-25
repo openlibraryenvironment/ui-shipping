@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ViewShipments from './routes/ViewShipments';
 import ViewShipment from './routes/ViewShipment';
 import ViewCreateShipment from './routes/ViewCreateShipment';
+import ViewEditShipment from './routes/ViewEditShipment';
 import Switch from 'react-router-dom/Switch';
 import { Route } from '@folio/stripes/core';
 
@@ -33,6 +34,7 @@ class Shipping extends React.Component {
       return (
           <Switch>
             <Route path={`${path}/create`} component={ViewCreateShipment} />
+            <Route path={`${path}/:id/edit`} component={ViewEditShipment} />
             <Route path={`${path}`} component={ViewShipments}>
               <Switch>
               <Route path={`${path}/:id`} exact component={ViewShipment} />

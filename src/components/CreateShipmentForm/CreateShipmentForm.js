@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Form } from 'redux-form';
+import { Form, Field } from 'react-final-form';
 
 import {
   AccordionSet,
@@ -39,12 +39,12 @@ class CreateShipmentForm extends React.Component {
     };
   }
 
-  renderPaneFooter() {
+  renderPaneFooter(handleSubmit, pristine, submitting) {
     const {
-      handleSubmit,
+      //handleSubmit,
       initialValues,
-      pristine,
-      submitting,
+      //pristine,
+      //submitting,
       invalid
     } = this.props;
 
@@ -69,7 +69,7 @@ class CreateShipmentForm extends React.Component {
     const endButton = (
       <Button
         buttonStyle="primary mega"
-        //disabled={pristine || submitting || invalid}
+        disabled={pristine || submitting || invalid}
         id={id}
         marginBottom0
         onClick={handleSubmit}
@@ -92,23 +92,28 @@ class CreateShipmentForm extends React.Component {
     const { onSubmit } = this.props;
 
     return (
-      <Paneset>
-        <Pane
-         appIcon={<AppIcon app="shipping"/>}
-          dismissible
-          defaultWidth="100%"
-          footer={this.renderPaneFooter()}
-          id="pane-shipment-form"
-          onClose={this.props.handlers.onClose}
-          paneTitle={<FormattedMessage id="ui-shipping.createShipment" />}
-        >
-              <form id="form-shipment">
+      <Form
+        onSubmit={onSubmit}
+        render={({ handleSubmit, submitting, pristine }) => (
+          <Paneset>
+            <Pane
+            appIcon={<AppIcon app="shipping"/>}
+              dismissible
+              defaultWidth="100%"
+              footer={this.renderPaneFooter(handleSubmit, submitting, pristine)}
+              id="pane-shipment-form"
+              onClose={this.props.handlers.onClose}
+              paneTitle={<FormattedMessage id="ui-shipping.createShipment" />}
+            >
+              <form id="form-shipment" onSubmit={handleSubmit}>
                 <div className={css.shipmentForm}>
                   <ShipmentFormInfo {...this.getSectionProps('shipmentFormInfo')}/>
                 </div>
               </form>
-        </Pane>
-      </Paneset>
+            </Pane>
+          </Paneset>
+        )}
+      />
     );
   }
 }

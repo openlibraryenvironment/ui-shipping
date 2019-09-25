@@ -51,6 +51,33 @@ class IndividualShipment extends React.Component {
     };
   }
 
+
+  renderLastMenu = () => {
+    const {
+      shipmentData: { shipment },
+      handlers
+    } = this.props;
+
+    return (
+      <PaneMenu>
+        <FormattedMessage id="ui-shipments.editShipment">
+          {ariaLabel => (
+            <Button
+              aria-label={ariaLabel}
+              buttonStyle="primary"
+              id="clickable-edit-shipment"
+              marginBottom0
+              to={this.props.urls.edit()}
+            >
+              <FormattedMessage id="stripes-components.button.edit" />
+            </Button>
+          )}
+        </FormattedMessage>
+      </PaneMenu>
+    );
+  }
+
+
   renderLoadingPane = () => {
     return (
       <Pane
@@ -87,6 +114,7 @@ class IndividualShipment extends React.Component {
         defaultWidth = "fill"
         dismissible
         id="pane-view-shipment"
+        lastMenu={this.renderLastMenu()}
         onClose={handlers.onClose}
         paneTitle={"Shipment · " + shipId}
         paneSub={shippingLibName + " 🠚 " + recievingLibName}

@@ -64,7 +64,6 @@ class ViewCreateShipment extends React.Component {
 
   handleSubmit = (shipment) => {
     const { history, location, mutator } = this.props;
-    console.log("Shipment passed through submit:", shipment)
 
     //Change the JSON string data back to JSON for directory entries
     if(shipment.shippingLibrary != null) {
@@ -74,7 +73,7 @@ class ViewCreateShipment extends React.Component {
       shipment.receivingLibrary={id:shipment.receivingLibrary}
     }
 
-    console.log("Shipment passed through submit after de-stringify-ing:", shipment)
+    console.log("Shipment passed through submit: %o", shipment)
 
     mutator.shipments
       .POST(shipment)

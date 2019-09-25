@@ -38,6 +38,10 @@ class ViewShipment extends React.Component {
 
   }
 
+  urls = {
+    edit: (() => `${this.props.location.pathname}/edit${this.props.location.search}`)
+  }
+
   handleClose = () => {
     this.props.history.push(`/shipping`);
   }
@@ -57,6 +61,7 @@ class ViewShipment extends React.Component {
             text: "Some text"
           }}
           isLoading={get(resources, 'shipment.isPending', true)}
+          urls={this.urls}
         />
       );
   }
