@@ -7,6 +7,7 @@ import { get, noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import FormattedUTCDate from './FormattedUTCDate';
 
+import ShipmentFilters from './ShipmentFilters/ShipmentFilters';
 
 import {
   SearchAndSortQuery,
@@ -244,6 +245,8 @@ class Shipments extends React.Component {
             onSort,
             getFilterHandlers,
             activeFilters,
+            filterChanged,
+            searchChanged,
             resetAll,
           }) => {
             return (
@@ -297,6 +300,12 @@ class Shipments extends React.Component {
                             </Icon>
                           </Button>
                         </div>
+                         {/* FILTERS NOT WORKING AS EXPECTED                         
+                         <ShipmentFilters
+                          activeFilters={activeFilters.state}
+                          data={shippingData}
+                          filterHandlers={getFilterHandlers()} 
+                        /> */}
                       </form>
                   </Pane>
                 }

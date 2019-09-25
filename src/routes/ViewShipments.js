@@ -36,11 +36,11 @@ class ViewShipments extends React.Component {
         },
       })
     },
-    /* shipmentMethodValues: {
+    libraryValues: {
       type: 'okapi',
-      path: 'shipments/refdata/Shipment/shippingMethod',
+      path: 'rs/directoryEntry',
       shouldRefresh: () => false,
-    }, */
+    },
     query: { initialValue: {} },
     resultCount: { initialValue: INITIAL_RESULT_COUNT },
   });
@@ -89,7 +89,7 @@ class ViewShipments extends React.Component {
     return (<Shipments
       shippingData={{
         shipments: get(resources, 'shipments.records', []),
-        //shipmentMethodValues: get(resources, 'shipmentMethodValues.records', []),
+        libraryValues: get(resources, 'libraryValues.records', []),
       }}
       onNeedMoreData={this.handleNeedMoreData}
       queryGetter={this.queryGetter}

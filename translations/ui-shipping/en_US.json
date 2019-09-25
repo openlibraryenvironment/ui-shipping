@@ -11,5 +11,6 @@
   "searchInputLabel": "Search shipments",
   "loading": "Loading...",
   "createShipment": "Create Shipment",
-  "placeholder.trackingNumber": "XXXX-XXXX-XXXX"
+  "placeholder.trackingNumber": "XXXX-XXXX-XXXX",
+  "filters.shippingLibrary": "Shipping Library"
 }
