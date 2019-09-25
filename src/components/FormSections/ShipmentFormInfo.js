@@ -26,24 +26,19 @@ export default class ShipmentFormInfo extends React.Component {
 
   render() {
     const { data, id } = this.props;
-
     return (
       <div data-test-shipment-info id={id}>
         <Row>
           <Col xs={12}>
-            <FormattedMessage id="ui-shipping.placeholder.trackingNumber">
-              {placeholder => (
-                <Field
-                  id="edit-shipment-trackingNumber"
-                  name="trackingNumber"
-                  label={<FormattedMessage id="ui-shipping.prop.trackingNumber" />}
-                  component={TextField}
-                  placeholder={placeholder}
-                  required
-                  validate={required}
-                />
-              )}
-            </FormattedMessage>
+            <Field
+              id="edit-shipment-trackingNumber"
+              name="trackingNumber"
+              label={<FormattedMessage id="ui-shipping.prop.trackingNumber" />}
+              component={TextField}
+              required
+              validate={required}
+              placeholder={"XXXX-XXXX-XXXX"}
+            />
           </Col>
         </Row>
         <Row>
@@ -51,20 +46,28 @@ export default class ShipmentFormInfo extends React.Component {
           <Field
               id="edit-shipment-shippingLibrary"
               component={Select}
-              dataOptions={data.libraryValues}
+              dataOptions={data.libraryValues.map(obj => { 
+                return {
+                  value: JSON.stringify(obj),
+                  label: obj.name
+                }})
+              }
               name="shippingLibrary"
               label={<FormattedMessage id="ui-shipping.prop.shippingLibrary" />}
-              required
             />
           </Col>
           <Col xs={6}>
           <Field
               id="edit-shipment-receivingLibrary"
               component={Select}
-              dataOptions={data.libraryValues}
+              dataOptions={data.libraryValues.map(obj => { 
+                return {
+                  value: JSON.stringify(obj),
+                  label: obj.name
+                }})
+              }
               name="receivingLibrary"
               label={<FormattedMessage id="ui-shipping.prop.receivingLibrary" />}
-              required
             />
           </Col>
         </Row>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { setSubmitFailed, stopSubmit } from 'redux-form';
+import { Form } from 'redux-form';
 
 import {
   AccordionSet,
@@ -50,9 +50,9 @@ class CreateShipmentForm extends React.Component {
 
     let id;
     if (initialValues && initialValues.id) {
-      id = 'clickable-update-license';
+      id = 'clickable-update-shipment';
     } else {
-      id = 'clickable-create-license';
+      id = 'clickable-create-shipment';
     }
 
     const startButton = (
@@ -69,7 +69,7 @@ class CreateShipmentForm extends React.Component {
     const endButton = (
       <Button
         buttonStyle="primary mega"
-        disabled={pristine || submitting || invalid}
+        //disabled={pristine || submitting || invalid}
         id={id}
         marginBottom0
         onClick={handleSubmit}
@@ -89,7 +89,7 @@ class CreateShipmentForm extends React.Component {
 
 
   render() {
-    const { } = this.props;
+    const { onSubmit } = this.props;
 
     return (
       <Paneset>
@@ -102,11 +102,12 @@ class CreateShipmentForm extends React.Component {
           onClose={this.props.handlers.onClose}
           paneTitle={<FormattedMessage id="ui-shipping.createShipment" />}
         >
-          <form id="form-shipment">
-            <div className={css.shipmentForm}>
-              <ShipmentFormInfo {...this.getSectionProps('shipmentFormInfo')}/>
-            </div>
-          </form>
+              <form id="form-shipment">
+                <div className={css.shipmentForm}>
+                  <ShipmentFormInfo {...this.getSectionProps('shipmentFormInfo')}/>
+                </div>
+              </form>
+
         </Pane>
       </Paneset>
     );
