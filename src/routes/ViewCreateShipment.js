@@ -4,7 +4,7 @@ import { get } from 'lodash';
 
 import { stripesConnect } from '@folio/stripes/core';
 
-import CreateShipmentForm from '../components/CreateShipmentForm/CreateShipmentForm';
+import ShipmentForm from '../components/ShipmentForm/ShipmentForm';
 
 class ViewCreateShipment extends React.Component {
   static manifest = Object.freeze({
@@ -86,7 +86,7 @@ class ViewCreateShipment extends React.Component {
   render() {
     const { handlers, resources } = this.props;
     return (
-      <CreateShipmentForm
+      <ShipmentForm
         data={{
           libraryValues: get(resources, 'libraryValues.records', []),
         }}

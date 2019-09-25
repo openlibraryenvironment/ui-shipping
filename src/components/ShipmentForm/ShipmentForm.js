@@ -23,9 +23,9 @@ import { Spinner } from '@folio/stripes-erm-components';
 
 import { ShipmentFormInfo } from '../FormSections';
 
-import css from './CreateShipmentForm.css';
+import css from './ShipmentForm.css';
 
-class CreateShipmentForm extends React.Component {
+class ShipmentForm extends React.Component {
 
   getSectionProps(id) {
     const { data, handlers } = this.props;
@@ -123,4 +123,4 @@ export default stripesForm({
   navigationCheck: true,
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-})(CreateShipmentForm);
+})(ShipmentForm);
