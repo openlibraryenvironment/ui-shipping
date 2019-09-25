@@ -36,7 +36,6 @@ export default class ShipmentFormInfo extends React.Component {
               label={<FormattedMessage id="ui-shipping.prop.trackingNumber" />}
               component={TextField}
               required
-              validate={required}
               placeholder={"XXXX-XXXX-XXXX"}
             />
           </Col>
@@ -48,7 +47,7 @@ export default class ShipmentFormInfo extends React.Component {
               component={Select}
               dataOptions={data.libraryValues.map(obj => { 
                 return {
-                  value: JSON.stringify(obj),
+                  value: obj.id,
                   label: obj.name
                 }})
               }
@@ -62,7 +61,7 @@ export default class ShipmentFormInfo extends React.Component {
               component={Select}
               dataOptions={data.libraryValues.map(obj => { 
                 return {
-                  value: JSON.stringify(obj),
+                  value: obj.id,
                   label: obj.name
                 }})
               }

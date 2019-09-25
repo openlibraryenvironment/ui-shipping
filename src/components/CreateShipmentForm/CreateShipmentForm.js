@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Form } from 'redux-form';
+import { Form } from 'react-final-form';
 
 import {
   AccordionSet,
@@ -102,12 +102,17 @@ class CreateShipmentForm extends React.Component {
           onClose={this.props.handlers.onClose}
           paneTitle={<FormattedMessage id="ui-shipping.createShipment" />}
         >
+          <Form
+            onSubmit={onSubmit}
+          >
+            {() => (
               <form id="form-shipment">
                 <div className={css.shipmentForm}>
                   <ShipmentFormInfo {...this.getSectionProps('shipmentFormInfo')}/>
                 </div>
               </form>
-
+            )}
+          </Form>
         </Pane>
       </Paneset>
     );
