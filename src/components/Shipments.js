@@ -1,13 +1,10 @@
 import React from 'react';
-import css from './Shipments.css';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 
 import { get, noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
-import FormattedUTCDate from './FormattedUTCDate';
 
-import ShipmentFilters from './ShipmentFilters/ShipmentFilters';
 
 import {
   SearchAndSortQuery,
@@ -16,7 +13,7 @@ import {
 } from '@folio/stripes/smart-components';
 
 
-import { 
+import {
   Button,
   IconButton,
   TextField,
@@ -32,6 +29,9 @@ import {
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 import Redirect from 'react-router-dom/Switch';
+import ShipmentFilters from './ShipmentFilters/ShipmentFilters';
+import FormattedUTCDate from './FormattedUTCDate';
+import css from './Shipments.css';
 
 
 class Shipments extends React.Component {
@@ -49,21 +49,20 @@ class Shipments extends React.Component {
     visibleColumns: PropTypes.arrayOf(PropTypes.string),
     disableRecordCreation: PropTypes.bool,
   }
+
   static defaultProps = {
     shippingData: {},
     searchString: '',
-    visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'], 
-    //visibleColumns: ['trackingNumber'],
+    visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'],
+    // visibleColumns: ['trackingNumber'],
   }
-
-  
 
 
   constructor(props) {
     super(props);
     this.state = {
       filterPaneIsVisible: true,
-    }
+    };
   }
 
 
@@ -71,16 +70,16 @@ class Shipments extends React.Component {
     shippingLibrary: <FormattedMessage id="ui-shipping.prop.shippingLibrary" />,
     receivingLibrary: <FormattedMessage id="ui-shipping.prop.receivingLibrary" />,
     id: <FormattedMessage id="ui-shipping.prop.id" />,
-    shipmentMethod: <FormattedMessage id="ui-shipping.prop.shipmentMethod" />, 
+    shipmentMethod: <FormattedMessage id="ui-shipping.prop.shipmentMethod" />,
     trackingNumber: <FormattedMessage id="ui-shipping.prop.trackingNumber" />,
     status: <FormattedMessage id="ui-shipping.prop.status" />,
     shipDate: <FormattedMessage id="ui-shipping.prop.shipDate" />,
-    receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" /> 
+    receivedDate: <FormattedMessage id="ui-shipping.prop.receivedDate" />
   }
 
   formatter = {
-    shippingLibrary: ({shippingLibrary}) => (shippingLibrary ? shippingLibrary.name : ''),
-    receivingLibrary: ({receivingLibrary}) => (receivingLibrary ? receivingLibrary.name : ''),
+    shippingLibrary: ({ shippingLibrary }) => (shippingLibrary ? shippingLibrary.name : ''),
+    receivingLibrary: ({ receivingLibrary }) => (receivingLibrary ? receivingLibrary.name : ''),
     shipDate: ({ shipDate }) => (shipDate ? <FormattedUTCDate value={shipDate} /> : ''),
     receivedDate: ({ receivedDate }) => (receivedDate ? <FormattedUTCDate value={receivedDate} /> : ''),
   }
@@ -102,7 +101,7 @@ class Shipments extends React.Component {
         className={rowClass}
         data-label={[
           rowData.name,
-          //this.formatter.trackingNumber(rowData),
+          // this.formatter.trackingNumber(rowData),
         ].join('...')}
         key={`row-${rowIndex}`}
         role="row"
@@ -173,7 +172,7 @@ class Shipments extends React.Component {
     );
   }
 
-  
+
   renderResultsPaneSubtitle = (source) => {
     if (source && source.loaded()) {
       const count = source.totalCount();
@@ -182,8 +181,6 @@ class Shipments extends React.Component {
 
     return <FormattedMessage id="stripes-smart-components.searchCriteria" />;
   }
-
-
 
 
   renderIsEmptyMessage = (query, source) => {
@@ -204,18 +201,12 @@ class Shipments extends React.Component {
   }
 
 
-
-
   rowURL = (id) => {
     return `/shipping/${id}`;
   }
 
 
-
-
-
-
-  render () {
+  render() {
     const {
       children,
       shippingData,
@@ -225,10 +216,10 @@ class Shipments extends React.Component {
       source,
       visibleColumns,
     } = this.props;
- 
+
     const query = queryGetter() || {};
     const count = source ? source.totalCount() : 0;
-    const sortOrder = query.sort || ''; 
+    const sortOrder = query.sort || '';
 
     return (
       <SearchAndSortQuery
@@ -258,87 +249,87 @@ class Shipments extends React.Component {
                     paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
                   >
                     <form onSubmit={onSubmitSearch}>
-                        {/* TODO: Use forthcoming <SearchGroup> or similar component */}
-                        <div className={css.searchGroupWrap}>
-                          <FormattedMessage id="ui-shipping.searchInputLabel">
-                            { ariaLabel => (
-                              <SearchField
-                                aria-label={ariaLabel}
-                                autoFocus
-                                className={css.searchField}
-                                data-test-shipping-search-input
-                                id="input-shipping-search"
-                                inputRef={this.searchField}
-                                marginBottom0
-                                name="query"
-                                onChange={getSearchHandlers().query}
-                                onClear={getSearchHandlers().reset}
-                                value={searchValue.query}
-                              />
-                            )}
-                          </FormattedMessage>
-                          <Button
-                            buttonStyle="primary"
-                            disabled={!searchValue.query || searchValue.query === ''}
-                            fullWidth
-                            id="clickable-search-shipments"
-                            marginBottom0
-                            type="submit"
-                          >
-                            <FormattedMessage id="stripes-smart-components.search" />
-                          </Button>
-                        </div>
-                        <div className={css.resetButtonWrap}>
-                          <Button
-                            buttonStyle="none"
-                            id="clickable-reset-all"
-                            disabled={false}
-                            onClick={resetAll}
-                          >
-                            <Icon icon="times-circle-solid">
-                              <FormattedMessage id="stripes-smart-components.resetAll" />
-                            </Icon>
-                          </Button>
-                        </div>
-                         {/* FILTERS NOT WORKING AS EXPECTED                         
+                      {/* TODO: Use forthcoming <SearchGroup> or similar component */}
+                      <div className={css.searchGroupWrap}>
+                        <FormattedMessage id="ui-shipping.searchInputLabel">
+                          { ariaLabel => (
+                            <SearchField
+                              aria-label={ariaLabel}
+                              autoFocus
+                              className={css.searchField}
+                              data-test-shipping-search-input
+                              id="input-shipping-search"
+                              inputRef={this.searchField}
+                              marginBottom0
+                              name="query"
+                              onChange={getSearchHandlers().query}
+                              onClear={getSearchHandlers().reset}
+                              value={searchValue.query}
+                            />
+                          )}
+                        </FormattedMessage>
+                        <Button
+                          buttonStyle="primary"
+                          disabled={!searchValue.query || searchValue.query === ''}
+                          fullWidth
+                          id="clickable-search-shipments"
+                          marginBottom0
+                          type="submit"
+                        >
+                          <FormattedMessage id="stripes-smart-components.search" />
+                        </Button>
+                      </div>
+                      <div className={css.resetButtonWrap}>
+                        <Button
+                          buttonStyle="none"
+                          id="clickable-reset-all"
+                          disabled={false}
+                          onClick={resetAll}
+                        >
+                          <Icon icon="times-circle-solid">
+                            <FormattedMessage id="stripes-smart-components.resetAll" />
+                          </Icon>
+                        </Button>
+                      </div>
+                      {/* FILTERS NOT WORKING AS EXPECTED
                          <ShipmentFilters
                           activeFilters={activeFilters.state}
                           data={shippingData}
-                          filterHandlers={getFilterHandlers()} 
+                          filterHandlers={getFilterHandlers()}
                         /> */}
-                      </form>
+                    </form>
                   </Pane>
                 }
                 <Pane
-                    appIcon={<AppIcon app="shipping" />}
-                    defaultWidth="fill"
-                    firstMenu={this.renderResultsFirstMenu(activeFilters)}
-                    lastMenu={this.renderResultsLastMenu()}
-                    padContent={false}
-                    paneTitle={<FormattedMessage id="ui-shipping.meta.title" />}
-                    paneSub={this.renderResultsPaneSubtitle(source)}
-                  >
-                    <MultiColumnList
-                      autosize
-                      columnMapping={this.columnMapping}
-                      columnWidths={this.columnWidths}
-                      contentData={shippingData.shipments}
-                      formatter={this.formatter}
-                      id="list-shipments"
-                      isEmptyMessage={this.renderIsEmptyMessage(query, source)}
-                      onHeaderClick={onSort}
-                      onNeedMoreData={onNeedMoreData}
-                      //onRowClick={onSelectRow}
-                      rowFormatter={this.rowFormatter}
-                      sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
-                      sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
-                      totalCount={count}
-                      virtualize
-                      visibleColumns={visibleColumns}
-                    />
-                  </Pane>
+                  appIcon={<AppIcon app="shipping" />}
+                  defaultWidth="fill"
+                  firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                  lastMenu={this.renderResultsLastMenu()}
+                  padContent={false}
+                  paneTitle={<FormattedMessage id="ui-shipping.meta.title" />}
+                  paneSub={this.renderResultsPaneSubtitle(source)}
+                >
+                  <MultiColumnList
+                    autosize
+                    columnMapping={this.columnMapping}
+                    columnWidths={this.columnWidths}
+                    contentData={shippingData.shipments}
+                    formatter={this.formatter}
+                    id="list-shipments"
+                    isEmptyMessage={this.renderIsEmptyMessage(query, source)}
+                    onHeaderClick={onSort}
+                    onNeedMoreData={onNeedMoreData}
+                      // onRowClick={onSelectRow}
+                    rowFormatter={this.rowFormatter}
+                    sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
+                    sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
+                    totalCount={count}
+                    virtualize
+                    visibleColumns={visibleColumns}
+                  />
+                </Pane>
 
-                  { children }
+                { children }
 
               </Paneset>
             );
@@ -349,4 +340,4 @@ class Shipments extends React.Component {
   }
 }
 
-export default Shipments
+export default Shipments;

@@ -26,7 +26,6 @@ import { ShipmentFormInfo } from '../FormSections';
 import css from './ShipmentForm.css';
 
 class ShipmentForm extends React.Component {
-
   getSectionProps(id) {
     const { data, handlers } = this.props;
     return {
@@ -41,10 +40,10 @@ class ShipmentForm extends React.Component {
 
   renderPaneFooter(handleSubmit, pristine, submitting) {
     const {
-      //handleSubmit,
+      // handleSubmit,
       initialValues,
-      //pristine,
-      //submitting,
+      // pristine,
+      // submitting,
       invalid
     } = this.props;
 
@@ -97,7 +96,7 @@ class ShipmentForm extends React.Component {
         render={({ handleSubmit, submitting, pristine }) => (
           <Paneset>
             <Pane
-            appIcon={<AppIcon app="shipping"/>}
+              appIcon={<AppIcon app="shipping" />}
               dismissible
               defaultWidth="100%"
               footer={this.renderPaneFooter(handleSubmit, submitting, pristine)}
@@ -107,7 +106,7 @@ class ShipmentForm extends React.Component {
             >
               <form id="form-shipment" onSubmit={handleSubmit}>
                 <div className={css.shipmentForm}>
-                  <ShipmentFormInfo {...this.getSectionProps('shipmentFormInfo')}/>
+                  <ShipmentFormInfo {...this.getSectionProps('shipmentFormInfo')} />
                 </div>
               </form>
             </Pane>

@@ -36,34 +36,36 @@ export default class ShipmentFormInfo extends React.Component {
               label={<FormattedMessage id="ui-shipping.prop.trackingNumber" />}
               component={TextField}
               required
-              placeholder={"XXXX-XXXX-XXXX"}
+              placeholder="XXXX-XXXX-XXXX"
             />
           </Col>
         </Row>
         <Row>
           <Col xs={6}>
-          <Field
+            <Field
               id="edit-shipment-shippingLibrary"
               component={Select}
-              dataOptions={data.libraryValues.map(obj => { 
+              dataOptions={data.libraryValues.map(obj => {
                 return {
                   value: obj.id,
                   label: obj.name
-                }})
+                };
+              })
               }
               name="shippingLibrary"
               label={<FormattedMessage id="ui-shipping.prop.shippingLibrary" />}
             />
           </Col>
           <Col xs={6}>
-          <Field
+            <Field
               id="edit-shipment-receivingLibrary"
               component={Select}
-              dataOptions={data.libraryValues.map(obj => { 
+              dataOptions={data.libraryValues.map(obj => {
                 return {
                   value: obj.id,
                   label: obj.name
-                }})
+                };
+              })
               }
               name="receivingLibrary"
               label={<FormattedMessage id="ui-shipping.prop.receivingLibrary" />}

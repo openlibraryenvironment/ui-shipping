@@ -1,11 +1,11 @@
 import React from 'react';
-import Shipments from '../components/Shipments';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import { stripesConnect } from '@folio/stripes/core';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
-import { getSASParams } from '@folio/stripes-erm-components'; 
+import { getSASParams } from '@folio/stripes-erm-components';
+import Shipments from '../components/Shipments';
 
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
@@ -54,8 +54,6 @@ class ViewShipments extends React.Component {
   }
 
 
-
-  
   componentDidMount() {
     this.source = new StripesConnectedSource(this.props, this.logger, 'shipments');
 
@@ -80,8 +78,8 @@ class ViewShipments extends React.Component {
   }
 
 
-  render () {
-    const {children, resources } = this.props;
+  render() {
+    const { children, resources } = this.props;
 
     if (this.source) {
       this.source.update(this.props, 'shipments');
@@ -95,7 +93,7 @@ class ViewShipments extends React.Component {
       queryGetter={this.queryGetter}
       querySetter={this.querySetter}
       source={this.source}
-      history= {this.props.history}
+      history={this.props.history}
     >
       { children }
     </Shipments>

@@ -1,11 +1,11 @@
 import React from 'react';
-import IndividualShipment from '../components/IndividualShipment/IndividualShipment';
 import { stripesConnect } from '@folio/stripes/core';
 import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
+import IndividualShipment from '../components/IndividualShipment/IndividualShipment';
+
 class ViewShipment extends React.Component {
-  
   static manifest = Object.freeze({
     interfaces: {
       type: 'okapi',
@@ -35,7 +35,6 @@ class ViewShipment extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
   urls = {
@@ -43,27 +42,27 @@ class ViewShipment extends React.Component {
   }
 
   handleClose = () => {
-    this.props.history.push(`/shipping`);
+    this.props.history.push('/shipping');
   }
 
   render() {
-    const {handlers, resources} = this.props;
-      return(
-        <IndividualShipment
-          shipmentData={{
-            shipment: {
-              ...get(resources,'shipment.records[0]',{}),
-            },
-          }}
-          handlers={{
-            ...handlers,
-            onClose: this.handleClose,
-            text: "Some text"
-          }}
-          isLoading={get(resources, 'shipment.isPending', true)}
-          urls={this.urls}
-        />
-      );
+    const { handlers, resources } = this.props;
+    return (
+      <IndividualShipment
+        shipmentData={{
+          shipment: {
+            ...get(resources, 'shipment.records[0]', {}),
+          },
+        }}
+        handlers={{
+          ...handlers,
+          onClose: this.handleClose,
+          text: 'Some text'
+        }}
+        isLoading={get(resources, 'shipment.isPending', true)}
+        urls={this.urls}
+      />
+    );
   }
 }
 export default stripesConnect(ViewShipment);

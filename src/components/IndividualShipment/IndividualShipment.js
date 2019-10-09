@@ -21,10 +21,8 @@ import { Spinner } from '@folio/stripes-erm-components';
 import ShipmentInfo from './sections/ShipmentInfo';
 
 class IndividualShipment extends React.Component {
-  
-
   static propTypes = {
-    
+
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
     }).isRequired,
@@ -34,10 +32,8 @@ class IndividualShipment extends React.Component {
     super(props);
     this.state = {
       showPane: true,
-    }
+    };
   }
-
-
 
 
   getSectionProps = (id) => {
@@ -95,11 +91,11 @@ class IndividualShipment extends React.Component {
   }
 
   handleClose() {
-    this.setState({showPane: false});
+    this.setState({ showPane: false });
   }
 
   render() {
-    const {shipmentData, isLoading, handlers} = this.props;
+    const { shipmentData, isLoading, handlers } = this.props;
 
     const shippingLibName = (shipmentData.shipment.shippingLibrary ? shipmentData.shipment.shippingLibrary.name : 'Shipping Library [Missing]');
     const recievingLibName = (shipmentData.shipment.receivingLibrary ? shipmentData.shipment.receivingLibrary.name : 'Receiving Library [Missing]');
@@ -109,20 +105,20 @@ class IndividualShipment extends React.Component {
 
     return (
       console.log(handlers.text),
-      <Pane
-        appIcon={<AppIcon app="shipping" />}
-        defaultWidth = "fill"
-        dismissible
-        id="pane-view-shipment"
-        lastMenu={this.renderLastMenu()}
-        onClose={handlers.onClose}
-        paneTitle={"Shipment · " + shipId}
-        paneSub={shippingLibName + " 🠚 " + recievingLibName}
-      >
-        <TitleManager>
-          <ShipmentInfo {...this.getSectionProps('shipmentInfo')}/>
-        </TitleManager>
-      </Pane>
+        <Pane
+          appIcon={<AppIcon app="shipping" />}
+          defaultWidth="fill"
+          dismissible
+          id="pane-view-shipment"
+          lastMenu={this.renderLastMenu()}
+          onClose={handlers.onClose}
+          paneTitle={'Shipment · ' + shipId}
+          paneSub={shippingLibName + ' 🠚 ' + recievingLibName}
+        >
+          <TitleManager>
+            <ShipmentInfo {...this.getSectionProps('shipmentInfo')} />
+          </TitleManager>
+        </Pane>
     );
   }
 }

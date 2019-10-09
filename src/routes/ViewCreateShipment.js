@@ -65,15 +65,15 @@ class ViewCreateShipment extends React.Component {
   handleSubmit = (shipment) => {
     const { history, location, mutator } = this.props;
 
-    //Change the JSON string data back to JSON for directory entries
-    if(shipment.shippingLibrary != null) {
-      shipment.shippingLibrary={id:shipment.shippingLibrary}
+    // Change the JSON string data back to JSON for directory entries
+    if (shipment.shippingLibrary != null) {
+      shipment.shippingLibrary = { id:shipment.shippingLibrary };
     }
-    if(shipment.receivingLibrary != null) {
-      shipment.receivingLibrary={id:shipment.receivingLibrary}
+    if (shipment.receivingLibrary != null) {
+      shipment.receivingLibrary = { id:shipment.receivingLibrary };
     }
 
-    console.log("Shipment passed through submit: %o", shipment)
+    console.log('Shipment passed through submit: %o', shipment);
 
     mutator.shipments
       .POST(shipment)

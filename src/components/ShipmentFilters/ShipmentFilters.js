@@ -41,12 +41,10 @@ class ShipmentFilters extends React.Component {
   }
 
 
-
-
   renderCheckboxFilter = (name, props) => {
     const { activeFilters } = this.props;
     const groupFilters = activeFilters[name] || [];
-    console.log("groupFilters: %o", groupFilters)
+    console.log('groupFilters: %o', groupFilters);
     return (
       <Accordion
         id={`filter-accordion-${name}`}
