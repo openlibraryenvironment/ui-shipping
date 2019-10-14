@@ -22,6 +22,12 @@ class ViewShipment extends React.Component {
   });
 
   static propTypes = {
+    location: PropTypes.shape({
+      search: PropTypes.string.isRequired,
+    }).isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
     handlers: PropTypes.object,
     resources: PropTypes.shape({
       shipment: PropTypes.object,
@@ -30,11 +36,6 @@ class ViewShipment extends React.Component {
 
   static defaultProps = {
     handlers: {},
-  }
-
-
-  constructor(props) {
-    super(props);
   }
 
   urls = {
