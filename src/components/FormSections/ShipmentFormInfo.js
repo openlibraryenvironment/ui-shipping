@@ -13,7 +13,7 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import { required } from '../../util/validators';
+import { required } from '@folio/stripes-util';
 
 export default class ShipmentFormInfo extends React.Component {
   static propTypes = {
