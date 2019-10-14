@@ -40,27 +40,11 @@ class ViewCreateShipment extends React.Component {
     }).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
 
   handleClose = () => {
     const { location } = this.props;
     this.props.history.push(`/shipping${location.search}`);
   }
-
-
-  getInitialValues = () => {
-    const { resources } = this.props;
-
-    const type = get(resources, 'libraryValues.records', []).find(v => v.value === 'local') || {};
-
-    return {
-      library: library.value,
-    };
-  }
-
 
   handleSubmit = (shipment) => {
     const { history, location, mutator } = this.props;
@@ -72,8 +56,6 @@ class ViewCreateShipment extends React.Component {
     if (shipment.receivingLibrary != null) {
       shipment.receivingLibrary = { id:shipment.receivingLibrary };
     }
-
-    console.log('Shipment passed through submit: %o', shipment);
 
     mutator.shipments
       .POST(shipment)
