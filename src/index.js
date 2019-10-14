@@ -20,10 +20,6 @@ class Shipping extends React.Component {
   };
 
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       match: {
