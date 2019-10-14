@@ -42,7 +42,20 @@
       }
     ]
   },
+  "devDependencies": {
+    "@folio/eslint-config-stripes": "^4.1.1",
+    "@folio/stripes": "^2.7.4",
+    "@folio/stripes-cli": "^1.10.0"
+  },
   "dependencies": {
+    "@folio/stripes-erm-components": "^1.4.1",
+    "@folio/stripes-util": "^1.5.0",
+    "lodash": "^4.17.4",
     "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "@folio/stripes": "^2.7.4",
+    "@folio/stripes-connect": "^5.2.3",
+    "react": "*"
   }
 }
