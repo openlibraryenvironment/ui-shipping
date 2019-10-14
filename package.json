@@ -8,7 +8,9 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^4.2.100042",
+    "@folio/eslint-config-stripes": "^4.1.1",
+    "@folio/stripes": "^2.7.4",
+    "@folio/stripes-cli": "^1.10.0",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.5.0"
   },
@@ -41,11 +43,6 @@
         "visible": true
       }
     ]
-  },
-  "devDependencies": {
-    "@folio/eslint-config-stripes": "^4.1.1",
-    "@folio/stripes": "^2.7.4",
-    "@folio/stripes-cli": "^1.10.0"
   },
   "dependencies": {
     "@folio/stripes-erm-components": "^1.4.1",
