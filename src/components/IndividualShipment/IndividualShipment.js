@@ -15,7 +15,9 @@ import ShipmentInfo from './sections/ShipmentInfo';
 
 class IndividualShipment extends React.Component {
   static propTypes = {
-
+    shipmentData: PropTypes.object,
+    urls: PropTypes.object,
+    isLoading: PropTypes.bool,
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
     }).isRequired,
@@ -33,12 +35,10 @@ class IndividualShipment extends React.Component {
     };
   }
 
-
   renderLastMenu = () => {
-
     return (
       <PaneMenu>
-        <FormattedMessage id="ui-shipments.editShipment">
+        <FormattedMessage id="ui-shipping.editShipment">
           {ariaLabel => (
             <Button
               aria-label={ariaLabel}
@@ -74,7 +74,6 @@ class IndividualShipment extends React.Component {
 
   render() {
     const { shipmentData, isLoading, handlers } = this.props;
-
     const shippingLibName = (shipmentData.shipment.shippingLibrary ? shipmentData.shipment.shippingLibrary.name : 'Shipping Library [Missing]');
     const recievingLibName = (shipmentData.shipment.receivingLibrary ? shipmentData.shipment.receivingLibrary.name : 'Receiving Library [Missing]');
     const shipId = (shipmentData.shipment.id ? shipmentData.shipment.id : 'Shipment ID [Missing]');
@@ -82,20 +81,20 @@ class IndividualShipment extends React.Component {
     if (isLoading) return this.renderLoadingPane();
 
     return (
-        <Pane
-          appIcon={<AppIcon app="shipping" />}
-          defaultWidth="fill"
-          dismissible
-          id="pane-view-shipment"
-          lastMenu={this.renderLastMenu()}
-          onClose={handlers.onClose}
-          paneTitle={'Shipment · ' + shipId}
-          paneSub={shippingLibName + ' 🠚 ' + recievingLibName}
-        >
-          <TitleManager>
-            <ShipmentInfo {...this.getSectionProps('shipmentInfo')} />
-          </TitleManager>
-        </Pane>
+      <Pane
+        appIcon={<AppIcon app="shipping" />}
+        defaultWidth="fill"
+        dismissible
+        id="pane-view-shipment"
+        lastMenu={this.renderLastMenu()}
+        onClose={handlers.onClose}
+        paneTitle={'Shipment · ' + shipId}
+        paneSub={shippingLibName + ' 🠚 ' + recievingLibName}
+      >
+        <TitleManager>
+          <ShipmentInfo {...this.getSectionProps('shipmentInfo')} />
+        </TitleManager>
+      </Pane>
     );
   }
 }

@@ -12,5 +12,6 @@
   "loading": "Loading...",
   "createShipment": "Create Shipment",
   "placeholder.trackingNumber": "XXXX-XXXX-XXXX",
-  "filters.shippingLibrary": "Shipping Library"
+  "filters.shippingLibrary": "Shipping Library",
+  "editShipment": "Edit shipment"
 }
