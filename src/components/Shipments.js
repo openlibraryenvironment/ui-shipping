@@ -40,7 +40,6 @@ class Shipments extends React.Component {
     onNeedMoreData: PropTypes.func,
     onSelectRow: PropTypes.func,
     queryGetter: PropTypes.func,
-    querySetter: PropTypes.func,
     visibleColumns: PropTypes.arrayOf(PropTypes.string),
     disableRecordCreation: PropTypes.bool,
   }
@@ -206,7 +205,6 @@ class Shipments extends React.Component {
       shippingData,
       onNeedMoreData,
       queryGetter,
-      querySetter,
       source,
       visibleColumns,
     } = this.props;
@@ -217,7 +215,6 @@ class Shipments extends React.Component {
 
     return (
       <SearchAndSortQuery
-        querySetter={this.querySetter}
         queryGetter={this.queryGetter}
         initialSortState={{ sort: 'id' }}
         initialSearchState={{ query: '' }}
@@ -228,10 +225,7 @@ class Shipments extends React.Component {
             getSearchHandlers,
             onSubmitSearch,
             onSort,
-            getFilterHandlers,
             activeFilters,
-            filterChanged,
-            searchChanged,
             resetAll,
           }) => {
             return (
