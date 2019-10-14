@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { cloneDeep, difference, get } from 'lodash';
+import { get } from 'lodash';
 
 import { stripesConnect } from '@folio/stripes/core';
 
@@ -47,10 +47,6 @@ class ViewEditShipment extends React.Component {
 
   static defaultProps = {
     handlers: {},
-  }
-
-  constructor(props) {
-    super(props);
   }
 
   handleClose = () => {

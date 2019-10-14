@@ -4,16 +4,12 @@ import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 
 import {
-  Checkbox,
   Col,
-  Datepicker,
   Row,
   Select,
-  TextArea,
   TextField,
 } from '@folio/stripes/components';
 
-import { required } from '../../util/validators';
 
 export default class ShipmentFormInfo extends React.Component {
   static propTypes = {

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'react-router-dom/Link';
 import PropTypes from 'prop-types';
 
-import { get, noop } from 'lodash';
+import { noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 
 
@@ -15,27 +15,22 @@ import {
 
 import {
   Button,
-  IconButton,
-  TextField,
   Paneset,
   Pane,
   PaneMenu,
-  PaneCloseLink,
-  PaneHeaderIconButton,
   SearchField,
   MultiColumnList,
   Icon
 } from '@folio/stripes/components';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
-import Redirect from 'react-router-dom/Switch';
-import ShipmentFilters from './ShipmentFilters/ShipmentFilters';
 import FormattedUTCDate from './FormattedUTCDate';
 import css from './Shipments.css';
 
 
 class Shipments extends React.Component {
   static propTypes = {
+    children: PropTypes.node,
     shippingData: PropTypes.object,
     searchString: PropTypes.string,
     source: PropTypes.shape({
@@ -45,7 +40,6 @@ class Shipments extends React.Component {
     onNeedMoreData: PropTypes.func,
     onSelectRow: PropTypes.func,
     queryGetter: PropTypes.func,
-    querySetter: PropTypes.func,
     visibleColumns: PropTypes.arrayOf(PropTypes.string),
     disableRecordCreation: PropTypes.bool,
   }
@@ -54,7 +48,6 @@ class Shipments extends React.Component {
     shippingData: {},
     searchString: '',
     visibleColumns: ['shippingLibrary', 'receivingLibrary', 'id', 'shipmentMethod', 'trackingNumber', 'status', 'shipDate', 'receivedDate'],
-    // visibleColumns: ['trackingNumber'],
   }
 
 
@@ -212,7 +205,6 @@ class Shipments extends React.Component {
       shippingData,
       onNeedMoreData,
       queryGetter,
-      querySetter,
       source,
       visibleColumns,
     } = this.props;
@@ -223,7 +215,6 @@ class Shipments extends React.Component {
 
     return (
       <SearchAndSortQuery
-        querySetter={this.querySetter}
         queryGetter={this.queryGetter}
         initialSortState={{ sort: 'id' }}
         initialSearchState={{ query: '' }}
@@ -234,10 +225,7 @@ class Shipments extends React.Component {
             getSearchHandlers,
             onSubmitSearch,
             onSort,
-            getFilterHandlers,
             activeFilters,
-            filterChanged,
-            searchChanged,
             resetAll,
           }) => {
             return (
@@ -291,12 +279,6 @@ class Shipments extends React.Component {
                           </Icon>
                         </Button>
                       </div>
-                      {/* FILTERS NOT WORKING AS EXPECTED
-                         <ShipmentFilters
-                          activeFilters={activeFilters.state}
-                          data={shippingData}
-                          filterHandlers={getFilterHandlers()}
-                        /> */}
                     </form>
                   </Pane>
                 }

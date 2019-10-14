@@ -1,31 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 
 import {
-  AccordionSet,
   Button,
-  Col,
-  ExpandAllButton,
-  IconButton,
-  Layout,
   Pane,
   PaneFooter,
-  PaneMenu,
   Paneset,
-  Row,
 } from '@folio/stripes/components';
-import { AppIcon, TitleManager } from '@folio/stripes/core';
+import { AppIcon } from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
 
-import { Spinner } from '@folio/stripes-erm-components';
 
-import { ShipmentFormInfo } from '../FormSections';
+import ShipmentFormInfo from '../FormSections/ShipmentFormInfo';
 
 import css from './ShipmentForm.css';
 
 class ShipmentForm extends React.Component {
+  static propTypes = {
+    data: PropTypes.object,
+    initialValues: PropTypes.object,
+    handlers: PropTypes.object,
+    invalid: PropTypes.bool,
+    onSubmit: PropTypes.func,
+  };
+
   getSectionProps(id) {
     const { data, handlers } = this.props;
     return {
@@ -40,10 +40,7 @@ class ShipmentForm extends React.Component {
 
   renderPaneFooter(handleSubmit, pristine, submitting) {
     const {
-      // handleSubmit,
       initialValues,
-      // pristine,
-      // submitting,
       invalid
     } = this.props;
 

@@ -1,25 +1,21 @@
 import React from 'react';
-
-import {
-  FormattedMessage,
-  FormattedDate
-} from 'react-intl';
+import PropTypes from 'prop-types';
 
 import {
   Row,
   Card,
   Col,
-  KeyValue,
-  Accordion,
-  Headline
 } from '@folio/stripes/components';
-import { get } from 'lodash';
 
 import FormattedUTCDate from '../../FormattedUTCDate';
 
 class ShipmentInfo extends React.Component {
+  static propTypes = {
+    shipment: PropTypes.object,
+  };
+
   render() {
-    const { id, shipment } = this.props;
+    const { shipment } = this.props;
     return (
       <React.Fragment>
         <b>Shipment Id</b>
