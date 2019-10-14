@@ -53,6 +53,9 @@
   "peerDependencies": {
     "@folio/stripes": "^2.7.4",
     "@folio/stripes-connect": "^5.2.3",
-    "react": "*"
+    "react": "*",
+    "react-final-form": "6.3.0",
+    "react-intl": "2.9.0",
+    "react-router-dom": "4.3.1"
   }
 }
