@@ -21,13 +21,6 @@ class IndividualShipment extends React.Component {
     }).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPane: true,
-    };
-  }
-
 
   getSectionProps = (id) => {
     const { shipmentData, handlers, urls } = this.props;
@@ -77,10 +70,6 @@ class IndividualShipment extends React.Component {
         </Layout>
       </Pane>
     );
-  }
-
-  handleClose() {
-    this.setState({ showPane: false });
   }
 
   render() {
