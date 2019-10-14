@@ -24,6 +24,7 @@ class ViewShipment extends React.Component {
   static propTypes = {
     location: PropTypes.shape({
       search: PropTypes.string.isRequired,
+      pathname: PropTypes.string.isRequired,
     }).isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -47,6 +48,7 @@ class ViewShipment extends React.Component {
   }
 
   render() {
+    console.log("location pathname %o", location.pathname)
     const { handlers, resources } = this.props;
     return (
       <IndividualShipment
