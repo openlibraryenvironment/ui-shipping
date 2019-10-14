@@ -13,7 +13,9 @@
     "eslint": "^5.5.0"
   },
   "stripes": {
-    "actsAs": ["app"],
+    "actsAs": [
+      "app"
+    ],
     "displayName": "ui-shipping.meta.title",
     "route": "/shipping",
     "queryResource": "query",
@@ -39,5 +41,8 @@
         "visible": true
       }
     ]
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
   }
 }
