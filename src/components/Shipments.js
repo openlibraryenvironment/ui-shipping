@@ -29,7 +29,6 @@ import {
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 import Redirect from 'react-router-dom/Switch';
-import ShipmentFilters from './ShipmentFilters/ShipmentFilters';
 import FormattedUTCDate from './FormattedUTCDate';
 import css from './Shipments.css';
 
@@ -291,12 +290,6 @@ class Shipments extends React.Component {
                           </Icon>
                         </Button>
                       </div>
-                      {/* FILTERS NOT WORKING AS EXPECTED
-                         <ShipmentFilters
-                          activeFilters={activeFilters.state}
-                          data={shippingData}
-                          filterHandlers={getFilterHandlers()}
-                        /> */}
                     </form>
                   </Pane>
                 }
