@@ -11,6 +11,23 @@ const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
 
 class ViewShipments extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+      search: PropTypes.string,
+    }).isRequired,
+    mutator: PropTypes.object,
+    resources: PropTypes.object,
+    stripes: PropTypes.shape({
+      logger: PropTypes.object,
+    }),
+  }
+
+
   static manifest = Object.freeze({
     shipments: {
       type: 'okapi',
@@ -84,19 +101,20 @@ class ViewShipments extends React.Component {
     if (this.source) {
       this.source.update(this.props, 'shipments');
     }
-    return (<Shipments
-      shippingData={{
-        shipments: get(resources, 'shipments.records', []),
-        libraryValues: get(resources, 'libraryValues.records', []),
-      }}
-      onNeedMoreData={this.handleNeedMoreData}
-      queryGetter={this.queryGetter}
-      querySetter={this.querySetter}
-      source={this.source}
-      history={this.props.history}
-    >
-      { children }
-    </Shipments>
+    return (
+      <Shipments
+        shippingData={{
+          shipments: get(resources, 'shipments.records', []),
+          libraryValues: get(resources, 'libraryValues.records', []),
+        }}
+        onNeedMoreData={this.handleNeedMoreData}
+        queryGetter={this.queryGetter}
+        querySetter={this.querySetter}
+        source={this.source}
+        history={this.props.history}
+      >
+        { children }
+      </Shipments>
     );
   }
 }

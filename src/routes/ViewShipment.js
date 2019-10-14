@@ -48,7 +48,6 @@ class ViewShipment extends React.Component {
   }
 
   render() {
-    console.log("location pathname %o", location.pathname)
     const { handlers, resources } = this.props;
     return (
       <IndividualShipment
