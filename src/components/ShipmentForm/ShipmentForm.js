@@ -21,7 +21,7 @@ import stripesForm from '@folio/stripes/form';
 
 import { Spinner } from '@folio/stripes-erm-components';
 
-import { ShipmentFormInfo } from '../FormSections';
+import ShipmentFormInfo from '../FormSections/ShipmentFormInfo';
 
 import css from './ShipmentForm.css';
 
