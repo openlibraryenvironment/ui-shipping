@@ -45,7 +45,7 @@
     ]
   },
   "dependencies": {
-    "@folio/stripes-erm-components": "^1.4.1",
+    "@folio/stripes-erm-components": "^2.0.0",
     "@folio/stripes-util": "^1.5.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.7.2"
